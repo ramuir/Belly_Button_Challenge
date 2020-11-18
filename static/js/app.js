@@ -48,7 +48,9 @@ function updateChart(sample){
         var sampleValues = results.sample_values;
         var otuLabels = results.otu_labels;
         var sampleIDS = results.otu_ids;
-
+        // var sampleValues2 = results.sample_values.reverse();
+        // var sampleIDS2 = results.otu_ids.reverse();
+        // var otuLabels2 = results.otu_labels.reverse();
 
         var trace1 = [{
             x: sampleValues.slice(0,10).reverse(),
@@ -59,11 +61,32 @@ function updateChart(sample){
 
         }];
 
-        var layout = {
+
+        var trace2 = [{
+            x: sampleIDS.reverse(),
+            y: sampleValues.reverse(),
+            text: otuLabels.reverse(),
+            mode: 'markers',
+            marker:  {
+                color: sampleIDS.reverse(),
+                // colorscale:  'Viridis',
+                size: sampleValues.reverse(),
+            }
+                
+            }];
+
+
+
+        var layout1 = {
             title: "Belly Button OTUs",
         } 
+
+        var layout2 = {
+            title: "Belly Button OTUs",
+        }
         
-        Plotly.newPlot("bar", trace1, layout);
+        Plotly.newPlot("bar", trace1, layout1);
+        Plotly.newPlot("bubble", trace2, layout2);
       
 
 
@@ -76,5 +99,5 @@ function updateChart(sample){
 
 
 }
-
+console.log("hi");
 init();
